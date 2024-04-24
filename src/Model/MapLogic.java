@@ -14,7 +14,7 @@ public class MapLogic {
         }
         //TODO make the trap placement logic, and make sure it does not overlap with treasure
         Treasure.placeTreasures(spelPlan);
-        //Trap.placeTraps(spelPlan);
+        Trap.PlaceTraps(spelPlan);
 
 
     }

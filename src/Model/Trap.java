@@ -3,28 +3,28 @@ import java.util.Random;
 
 
 public class Trap {
-    Random random = new Random();
-    public String[][] PlaceTraps(String[][] map)
+    static Random random = new Random();
+    public static String[][] PlaceTraps(String[][] map)
     {
-        boolean pt = true;
-        while(pt)
+        boolean validTrapPlace = true;
+        int counter = 0;
+        while(validTrapPlace)
         {
-            int x = randomizer();
-            int y = randomizer();
+            int x = random.nextInt(map.length);
+            int y = random.nextInt(map[0].length);
 
             if(map[x][y] != "T")
             {
                 map[x][y] = "D";
-                pt = false;
+                counter++;
+            }
+            if(counter == 3) {
+                validTrapPlace = false;
+            }
+            else {
+                validTrapPlace = true;
             }
         }
         return map;
     }
-
-    public int randomizer()
-    {
-        int x = random.nextInt(10);
-        return x;
-    }
-
 }
