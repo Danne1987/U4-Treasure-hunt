@@ -11,10 +11,13 @@ public class MapLogic {
         {
             for(int j = 0; j < spelPlan[i].length; j++)
             {
-                spelPlan[i][j] = "0";
+                spelPlan[i][j] = "";
             }
         }
+        Trap.placeTraps(spelPlan);
+        //TODO make the trap placement logic, and make sure it does not overlap with treasue
         Treasure.placeTreasures(spelPlan);
+
     }
 
     public String[][] getSpelPlan() {
