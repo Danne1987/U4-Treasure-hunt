@@ -11,8 +11,12 @@ public class Treasure {
                 {{-1, -1}, {0, -1}, {0, 0}, {0, 1}},
                 // S shape
                 {{0, 0}, {1, 0}, {-1, 1}, {0, 1}},
-                {{0, 0}, {0, -1}, {1, -1}, {1, 0}}
-                // Define more shapes as needed
+                {{0, 0}, {0, -1}, {1, -1}, {1, 0}},
+
+                //Straight shape
+                {{0,0}, {1,0}, {2,0}, {3,0}}
+
+
         };
 
         // Place treasures on the map

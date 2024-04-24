@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.TreeSet;
+
 public class MapLogic {
     String[][] spelPlan;
     public MapLogic()
@@ -12,6 +14,7 @@ public class MapLogic {
                 spelPlan[i][j] = "0";
             }
         }
+        Treasure.placeTreasures(spelPlan);
     }
 
     public String[][] getSpelPlan() {
