@@ -2,6 +2,7 @@ package Model;
 
 public class MapLogic {
     String[][] spelPlan;
+    TreasureTest[] tTests;
     public MapLogic()
     {
         spelPlan = new String[10][10];
@@ -12,7 +13,12 @@ public class MapLogic {
                 spelPlan[i][j] = "";
             }
         }
-        Treasure.placeTreasures(spelPlan); //place treasures
+        tTests = new TreasureTest[5];
+        for (int i = 0; i < tTests.length; i++) {
+            tTests[i] = new TreasureTest(i); // Assuming x = 0 for all objects
+            spelPlan = tTests[i].returnTreasureToMap(spelPlan);
+        }
+        //Treasure.placeTreasures(spelPlan); //place treasures
         Trap.PlaceTraps(spelPlan); //place treasures, check if the spaces are filled or not
 
 
