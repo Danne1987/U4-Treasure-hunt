@@ -14,9 +14,9 @@ public class MapLogic {
                 spelPlan[i][j] = "";
             }
         }
-        //TODO make the trap placement logic, and make sure it does not overlap with treasue
+        //TODO make the trap placement logic, and make sure it does not overlap with treasure
         Treasure.placeTreasures(spelPlan);
-        Trap.placeTraps(spelPlan);
+        //Trap.placeTraps(spelPlan);
 
 
     }
