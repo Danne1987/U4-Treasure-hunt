@@ -12,9 +12,8 @@ public class MapLogic {
                 spelPlan[i][j] = "";
             }
         }
-        //TODO make the trap placement logic, and make sure it does not overlap with treasure
-        Treasure.placeTreasures(spelPlan);
-        Trap.PlaceTraps(spelPlan);
+        Treasure.placeTreasures(spelPlan); //place treasures
+        Trap.PlaceTraps(spelPlan); //place treasures, check if the spaces are filled or not
 
 
     }
