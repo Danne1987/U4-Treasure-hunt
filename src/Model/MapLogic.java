@@ -3,6 +3,7 @@ package Model;
 public class MapLogic {
     String[][] spelPlan;
     TreasureTest[] tTests;
+    Trap[] traps;
     public MapLogic()
     {
         spelPlan = new String[10][10];
@@ -19,7 +20,13 @@ public class MapLogic {
             spelPlan = tTests[i].returnTreasureToMap(spelPlan);
         }
         //Treasure.placeTreasures(spelPlan); //place treasures
-        Trap.PlaceTraps(spelPlan); //place treasures, check if the spaces are filled or not
+        traps = new Trap[3];
+        for(int i = 0; i < traps.length; i++)
+        {
+            traps[i] = new Trap();
+            traps[i].PlaceTraps(spelPlan);
+        }
+
 
 
     }

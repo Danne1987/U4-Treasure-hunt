@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class TreasureTest {
     private int[][] shape;
+    int xCoord;
+    int yCoord;
     private Random random = new Random();
 
     public TreasureTest(int x) {
@@ -33,8 +35,8 @@ public class TreasureTest {
         boolean isValidPlacement = false;
 
         do {
-            int xCoord = random.nextInt(map.length);
-            int yCoord = random.nextInt(map[0].length);
+            xCoord = random.nextInt(map.length);
+            yCoord = random.nextInt(map[0].length);
 
             isValidPlacement = true;
             for (int[] coords : shape) {
