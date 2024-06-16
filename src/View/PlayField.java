@@ -32,6 +32,7 @@ public class PlayField extends JPanel {
                         System.out.println("Button clicked at row " + (row + 1) + ", column " + (col + 1));
 
                         controller.dig(row, col);
+                        //TODO: research if needed here, or if it can be only logic in the controller calling to update boundary
                     }
                 });
                 add(button);
