@@ -10,7 +10,8 @@ import Controller.Controller;
 public class PlayField extends JPanel {
     private Controller controller;
 
-    public PlayField(String[][] map) {
+    public PlayField(String[][] map, Controller controller) {
+        this.controller = controller;
         setBackground(Color.BLUE);
         setLayout(new GridLayout(11, 11));
         setPreferredSize(new Dimension(500, 500));
@@ -27,8 +28,8 @@ public class PlayField extends JPanel {
                         JButton clickedButton = (JButton) e.getSource();
 
                         int index = getComponentIndex(clickedButton);
-                        int row = (index / 11) - 1;
-                        int col = ((index - 1) % 11) - 1;
+                        int row = (index - 1) / 11;
+                        int col = (index - 1) % 11;
                         System.out.println("Button clicked at row " + (row + 1) + ", column " + (col + 1));
 
                         controller.dig(row, col);
@@ -44,6 +45,7 @@ public class PlayField extends JPanel {
             add(colLabel);
         }
     }
+
     private int getComponentIndex(Component component) {
         Container container = component.getParent();
         for (int i = 0; i < container.getComponentCount(); i++) {
@@ -55,7 +57,12 @@ public class PlayField extends JPanel {
     }
 
 
-    //TODO: only if we want to indicate somehow that a square has been dug
+    //TODO: only if we want to indicate somehow that a square has been dug, and possibly what type?
     public void updateButton(int row, int col) {
+        int index = (row)* 11 + (col + 1);
+        JButton button = (JButton) getComponent(index);
+        button.setBackground(Color.BLUE);
+        button.setText("Clear");
     }
 }
+

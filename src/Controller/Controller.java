@@ -4,13 +4,13 @@ import Model.*;
 import javax.swing.*;
 
 public class Controller{
-    ScoreController scoreController;
-    MapLogic map;
+    private ScoreController scoreController;
+    private MapLogic map;
     //Treasure treasure = new Treasure(map.getSpelPlan());
-    PlayField field;
-    Viewer viewer;
-    Player player1;
-    Player player2;
+    private PlayField field;
+    private Viewer viewer;
+    private Player player1;
+    private Player player2;
     private Player currentPlayer;
     private boolean gameOver = false;
 
@@ -19,7 +19,7 @@ public class Controller{
         scoreController = new ScoreController();
         map = new MapLogic();
         scoreController.writeToFile();
-        field = new PlayField(map.getSpelPlan());
+        field = new PlayField(map.getSpelPlan(), this);
         viewer = new Viewer(field);
 
         /*String name1 = JOptionPane.showInputDialog("Enter Name for Player 1:");
@@ -63,7 +63,23 @@ public class Controller{
     public void dig(int row, int col) {
         //TODO logic for the digging consequences
 
+        String[][] mapSpelPlan = map.getSpelPlan();
+        String cell = mapSpelPlan[row][col];
 
+        if (cell.equals("T")) {
+            JOptionPane.showMessageDialog(null, "You found Treasure");
+            //implement something to indicate if full treasure or only part of it
+            currentPlayer.addScore(10);
+        }
+        else if (cell.equals("D")) {
+            JOptionPane.showMessageDialog(null, "You fell in a Trap!");
+            currentPlayer.addScore(-5);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Nothing here");
+        }
+
+        field.updateButton(row, col);
 
         endTurn();
     }
