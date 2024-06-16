@@ -5,7 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Controller.Controller;
+
 public class PlayField extends JPanel {
+    private Controller controller;
+
     public PlayField(String[][] map) {
         setBackground(Color.BLUE);
         setLayout(new GridLayout(11, 11));
@@ -26,6 +30,8 @@ public class PlayField extends JPanel {
                         int row = (index / 11) - 1;
                         int col = ((index - 1) % 11) - 1;
                         System.out.println("Button clicked at row " + (row + 1) + ", column " + (col + 1));
+
+                        controller.dig(row, col);
                     }
                 });
                 add(button);
