@@ -40,7 +40,7 @@ public class PlayField extends JPanel {
             }
         }
         add(new JLabel());
-        for (char col = 'A'; col <= 'J'; col++) {
+        for (int col = 1; col <= 10; col++) {
             JLabel colLabel = new JLabel(String.valueOf(col), SwingConstants.CENTER);
             add(colLabel);
         }
