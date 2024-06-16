@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Viewer extends JFrame {
+    private JLabel currentPlayerLabel;
+
     public Viewer(PlayField pField)
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,6 +17,9 @@ public class Viewer extends JFrame {
         setLayout(new BorderLayout());
 
         ScoreBar scoreBar = new ScoreBar();
+        currentPlayerLabel = new JLabel("Current Player: ", SwingConstants.CENTER);
+        scoreBar.add(currentPlayerLabel);
+
         PlayField playField = pField;
         Buttons buttons = new Buttons();
 
@@ -23,5 +28,9 @@ public class Viewer extends JFrame {
         add(buttons, BorderLayout.SOUTH);
         setVisible(true);
 
+    }
+
+    public void updateCurrentPlayer(String playerName) {
+        currentPlayerLabel.setText("Current Player: " + playerName);
     }
 }
