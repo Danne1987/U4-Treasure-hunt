@@ -61,7 +61,9 @@ public class Controller{
     }
 
     public void dig(int row, int col) {
-        //TODO logic
+        //TODO logic for the digging consequences
+
+
 
         endTurn();
     }

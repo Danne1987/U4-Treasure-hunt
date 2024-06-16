@@ -53,4 +53,9 @@ public class PlayField extends JPanel {
         }
         return -1;
     }
+
+
+    //TODO: only if we want to indicate somehow that a square has been dug
+    public void updateButton(int row, int col) {
+    }
 }
