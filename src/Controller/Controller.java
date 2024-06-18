@@ -22,13 +22,6 @@ public class Controller{
         field = new PlayField(map.getSpelPlan(), this);
         viewer = new Viewer(field);
 
-        /*String name1 = JOptionPane.showInputDialog("Enter Name for Player 1:");
-        player1 = new Player(name1, 0);
-        String name2 = JOptionPane.showInputDialog("Enter Name for Player 2:");
-        player2 = new Player(name2, 0);
-
-         */
-
         startGame();
     }
 
@@ -66,20 +59,24 @@ public class Controller{
         String[][] mapSpelPlan = map.getSpelPlan();
         String cell = mapSpelPlan[row][col];
 
+        String type = "";
+
         if (cell.equals("T")) {
             JOptionPane.showMessageDialog(null, "You found Treasure");
             //implement something to indicate if full treasure or only part of it
-            currentPlayer.addScore(10);
+            getCurrentPlayer().addScore(10);
+            type = "T";
         }
         else if (cell.equals("D")) {
             JOptionPane.showMessageDialog(null, "You fell in a Trap!");
-            currentPlayer.addScore(-5);
+            getCurrentPlayer().addScore(-5);
+            type = "D";
         }
         else {
             JOptionPane.showMessageDialog(null, "Nothing here");
         }
 
-        field.updateButton(row, col);
+        field.updateButton(row, col, type);
 
         endTurn();
     }

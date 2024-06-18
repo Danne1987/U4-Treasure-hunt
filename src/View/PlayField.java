@@ -20,7 +20,8 @@ public class PlayField extends JPanel {
             JLabel rowLabel = new JLabel(String.valueOf(i), SwingConstants.CENTER);
             add(rowLabel);
             for (int j = 0; j < 10; j++) {
-                JButton button = new JButton(map[i-1][j]);
+                JButton button = new JButton(map[i-1][j]); //this shows traps and treasures on the field
+                //JButton button = new JButton(""); //this sets the initial value to be empty, traps and treasures visible when dug
                 button.setPreferredSize(new Dimension(50, 50));
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -58,11 +59,22 @@ public class PlayField extends JPanel {
 
 
     //TODO: only if we want to indicate somehow that a square has been dug, and possibly what type?
-    public void updateButton(int row, int col) {
+    public void updateButton(int row, int col, String type) {
         int index = (row)* 11 + (col + 1);
         JButton button = (JButton) getComponent(index);
-        button.setBackground(Color.BLUE);
-        button.setText("Clear");
+
+        if (type == "T") {
+            button.setBackground(Color.GREEN);
+
+        }
+        else if (type == "D") {
+            button.setBackground(Color.RED);
+        }
+        else {
+            button.setBackground(Color.DARK_GRAY);
+        }
+
+        // button.setText("Clear!"); //does not show the whole text so better without
     }
 }
 
