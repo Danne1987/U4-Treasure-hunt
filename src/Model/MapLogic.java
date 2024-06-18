@@ -26,9 +26,6 @@ public class MapLogic {
             traps[i] = new Trap();
             traps[i].PlaceTraps(spelPlan);
         }
-
-
-
     }
 
     public String[][] getSpelPlan() {
