@@ -11,8 +11,10 @@ public class Buttons extends JPanel {
 
         JButton endGameButton = new JButton("End Game");
         JButton startNewGameButton = new JButton("Start New Game");
+        JButton highscoreButton = new JButton("Highscore List");
 
         add(endGameButton);
         add(startNewGameButton);
+        add(highscoreButton);
     }
 }
