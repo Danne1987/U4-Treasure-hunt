@@ -60,16 +60,24 @@ public class Controller{
         String cell = mapSpelPlan[row][col];
 
         String type = "";
+        currentPlayer = getCurrentPlayer();
 
         if (cell.equals("T")) {
-            JOptionPane.showMessageDialog(null, "You found Treasure");
+            JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
             //implement something to indicate if full treasure or only part of it
-            getCurrentPlayer().addScore(10);
+            currentPlayer.addScore(10);
             type = "T";
+            for (TreasureTest treasure : map.getTTests()) {
+                treasure.markDug(mapSpelPlan, row, col);
+                if (treasure.isComplete()){     //(mapSpelPlan)) {
+                    JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
+                    currentPlayer.addScore(50);
+                }
+            }
         }
         else if (cell.equals("D")) {
             JOptionPane.showMessageDialog(null, "You fell in a Trap!");
-            getCurrentPlayer().addScore(-5);
+            currentPlayer.addScore(-5);
             type = "D";
         }
         else {

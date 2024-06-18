@@ -4,13 +4,10 @@ public class MapLogic {
     String[][] spelPlan;
     TreasureTest[] tTests;
     Trap[] traps;
-    public MapLogic()
-    {
+    public MapLogic() {
         spelPlan = new String[10][10];
-        for(int i = 0; i < spelPlan.length; i++)
-        {
-            for(int j = 0; j < spelPlan[i].length; j++)
-            {
+        for(int i = 0; i < spelPlan.length; i++) {
+            for(int j = 0; j < spelPlan[i].length; j++) {
                 spelPlan[i][j] = "";
             }
         }
@@ -21,8 +18,7 @@ public class MapLogic {
         }
         //Treasure.placeTreasures(spelPlan); //place treasures
         traps = new Trap[3];
-        for(int i = 0; i < traps.length; i++)
-        {
+        for(int i = 0; i < traps.length; i++) {
             traps[i] = new Trap();
             traps[i].PlaceTraps(spelPlan);
         }
@@ -30,5 +26,9 @@ public class MapLogic {
 
     public String[][] getSpelPlan() {
         return spelPlan;
+    }
+
+    public TreasureTest[] getTTests() {
+        return tTests;
     }
 }

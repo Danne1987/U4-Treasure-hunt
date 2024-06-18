@@ -1,13 +1,18 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class TreasureTest {
+    private Random random = new Random();
     private int[][] shape;
     int xCoord;
     int yCoord;
-    private Random random = new Random();
+    private List<int[]> coordinates = new ArrayList<>();
+    private boolean isCompleted;
+    private boolean[] dugPieces;
 
     public TreasureTest(int x) {
         if (x == 0) {
@@ -54,10 +59,57 @@ public class TreasureTest {
                     int newX = xCoord + coords[0];
                     int newY = yCoord + coords[1];
                     map[newX][newY] = "T";
+                    coordinates.add(new int[]{newX, newY});
                 }
+                dugPieces = new boolean[coordinates.size()];
             }
         } while (!isValidPlacement);
 
         return map;
+    }
+
+    public void markDug(String[][] map, int row, int col) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            int[] coords = coordinates.get(i);
+            if (coords[0] == row && coords[1] == col) {
+                map[row][col] = "DUG";
+                dugPieces[i] = true;
+                break;
+            }
+        }
+
+
+        /*
+        for(int[] coord : coordinates) {
+            if (coord[0] == row && coord[1] == col) {
+                map[row][col] = "DUG";
+                break;
+            }
+        }
+
+         */
+    }
+
+    public boolean isComplete(){ //String[][] map) {
+        if (isCompleted) {
+            return false;
+        }
+        for (boolean dug : dugPieces) {
+            if (!dug) {
+                return false;
+            }
+        }
+        isCompleted = true;
+        return true;
+
+        /*
+        for (int[] coord : coordinates) {
+            if(!map[coord[0]][coord[1]].equals("DUG")) {
+                return false;
+            }
+        }
+        return true;
+
+         */
     }
 }
