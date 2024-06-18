@@ -20,7 +20,7 @@ public class Controller{
         map = new MapLogic();
         scoreController.writeToFile();
         field = new PlayField(map.getSpelPlan(), this);
-        viewer = new Viewer(field);
+        viewer = new Viewer(field, this);
 
         startGame();
     }
@@ -44,6 +44,10 @@ public class Controller{
                 player2.getName() + ": " + player2.getScore());
 
         //TODO: what to do when the game has ended?
+    }
+
+    public void exitGame() {
+        System.exit(0);
     }
 
     public void checkGameOver() {
