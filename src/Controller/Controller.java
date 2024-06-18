@@ -33,25 +33,53 @@ public class Controller{
 
         currentPlayer = player1;
         viewer.updateCurrentPlayer(currentPlayer.getName());
-
-        while (!gameOver) {
-
-        }
     }
 
     public void endGame() {
         //TODO: logic to end the game
         //saving the points of player1 and player2 to the highscore list
+        //below for testing purposes
+        JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
+                player1.getName() + ": " + player1.getScore() + "\n" +
+                player2.getName() + ": " + player2.getScore());
+
+        //TODO: what to do when the game has ended?
+    }
+
+    public void checkGameOver() {
+        boolean allTreasureDug = true;
+
+        String[][] mapSpelPlan = map.getSpelPlan();
+
+        for (int row = 0; row < mapSpelPlan.length; row++) {
+            for (int col = 0; col < mapSpelPlan[row].length; col++) {
+                if (mapSpelPlan[row][col].equals("T")) {
+                    allTreasureDug = false;
+                    break;
+                }
+            }
+            if (!allTreasureDug) {
+                break;
+            }
+        }
+        if (allTreasureDug) {
+            gameOver = true;
+        }
     }
 
     public void endTurn() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
+        checkGameOver();
+        if (!gameOver) {
+            if (currentPlayer == player1) {
+                currentPlayer = player2;
+            } else {
+                currentPlayer = player1;
+            }
+            viewer.updateCurrentPlayer(currentPlayer.getName());
         }
         else {
-            currentPlayer = player1;
+            endGame();
         }
-        viewer.updateCurrentPlayer(currentPlayer.getName());
     }
 
     public Player getCurrentPlayer() {
