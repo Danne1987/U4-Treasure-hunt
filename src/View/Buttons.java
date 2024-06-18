@@ -9,10 +9,10 @@ public class Buttons extends JPanel {
         setLayout(new GridLayout(1,2));
         setPreferredSize((new Dimension(200,50)));
 
-        JButton endTurnButton = new JButton("End Turn");
-        JButton digButton = new JButton("Dig!");
+        JButton endGameButton = new JButton("End Game");
+        JButton startNewGameButton = new JButton("Start New Game");
 
-        add(endTurnButton);
-        add(digButton);
+        add(endGameButton);
+        add(startNewGameButton);
     }
 }

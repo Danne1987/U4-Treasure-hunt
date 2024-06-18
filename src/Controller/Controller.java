@@ -39,6 +39,11 @@ public class Controller{
         }
     }
 
+    public void endGame() {
+        //TODO: logic to end the game
+        //saving the points of player1 and player2 to the highscore list
+    }
+
     public void endTurn() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
