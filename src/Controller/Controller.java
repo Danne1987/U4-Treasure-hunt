@@ -38,12 +38,18 @@ public class Controller{
     public void endGame() {
         //TODO: logic to end the game
         //saving the points of player1 and player2 to the highscore list
-        //below for testing purposes
-        JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
-                player1.getName() + ": " + player1.getScore() + "\n" +
-                player2.getName() + ": " + player2.getScore());
 
-        //TODO: what to do when the game has ended?
+        String player1Name = player1.getName();
+        int player1Score = player1.getScore();
+
+        String player2Name = player2.getName();
+        int player2Score = player2.getScore();
+
+        JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
+                player1Name + ": " + player1Score + "\n" +
+                player2Name + ": " + player2Score);
+
+        //TODO: save the scores to the highscore list
     }
 
     public void exitGame() {

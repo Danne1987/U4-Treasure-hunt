@@ -20,8 +20,13 @@ public class Viewer extends JFrame {
         setLayout(new BorderLayout());
 
         ScoreBar scoreBar = new ScoreBar();
+        JLabel scoreCountPlayer1 = new JLabel("Score kommer visas här!");
         currentPlayerLabel = new JLabel("Current Player: ", SwingConstants.CENTER);
+        JLabel scoreCountPlayer2 = new JLabel("Score kommer visas här!");
+
+        scoreBar.add(scoreCountPlayer1);
         scoreBar.add(currentPlayerLabel);
+        scoreBar.add(scoreCountPlayer2);
 
         PlayField playField = pField;
         Buttons buttons = new Buttons(this);
@@ -43,8 +48,9 @@ public class Viewer extends JFrame {
     }
 
     public void onStartNewGameButtonPressed() {
-        controller.endGame();
-        controller.startGame();
+        dispose();
+        new Controller();
+
     }
 
     public void onHighscoreButtonPressed() {
