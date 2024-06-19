@@ -22,11 +22,11 @@ public class Viewer extends JFrame {
         ScoreBar scoreBar = new ScoreBar();
         JLabel scoreCountPlayer1 = new JLabel("Score kommer visas här!");
         currentPlayerLabel = new JLabel("Current Player: ", SwingConstants.CENTER);
-        JLabel scoreCountPlayer2 = new JLabel("Score kommer visas här!");
+        //JLabel scoreCountPlayer2 = new JLabel("Score kommer visas här!");
 
         scoreBar.add(scoreCountPlayer1);
         scoreBar.add(currentPlayerLabel);
-        scoreBar.add(scoreCountPlayer2);
+        //scoreBar.add(scoreCountPlayer2);
 
         PlayField playField = pField;
         Buttons buttons = new Buttons(this);
