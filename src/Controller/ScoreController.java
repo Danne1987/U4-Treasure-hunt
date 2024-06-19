@@ -1,10 +1,11 @@
 package Controller;
-import Model.Player;
+import Model.ScoreEntry;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
 
 public class ScoreController {
     private static final String HIGHSCORE_FILE_PATH = "files/Highscore.txt";
@@ -60,20 +61,3 @@ public class ScoreController {
 
 }
 
-class ScoreEntry {
-    private String playerName;
-    private int score;
-
-    public ScoreEntry(String playerName, int score) {
-        this.playerName = playerName;
-        this.score = score;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public int getScore() {
-        return score;
-    }
-}
