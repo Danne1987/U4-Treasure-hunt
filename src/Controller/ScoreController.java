@@ -9,21 +9,6 @@ import java.util.List;
 public class ScoreController {
     private static final String HIGHSCORE_FILE_PATH = "files/Highscore.txt";
 
-    /*
-    public void writeToFile(String playerName, int score){
-        try(BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(HIGHSCORE_FILE_PATH, true)))){
-            writer.write(playerName + ": " + score);
-            writer.newLine();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-     */
-
     public List<ScoreEntry> readScores() {
         List<ScoreEntry> scores = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(HIGHSCORE_FILE_PATH))) {
