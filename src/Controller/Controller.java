@@ -18,7 +18,7 @@ public class Controller{
     public Controller(){
         scoreController = new ScoreController();
         map = new MapLogic();
-        scoreController.writeToFile();
+        //scoreController.writeToFile();
         field = new PlayField(map.getSpelPlan(), this);
         viewer = new Viewer(field, this);
 
@@ -50,6 +50,9 @@ public class Controller{
                 player2Name + ": " + player2Score);
 
         //TODO: save the scores to the highscore list
+
+        scoreController.updateScores(player1Name, player1Score);
+        scoreController.updateScores(player2Name, player2Score);
     }
 
     public void exitGame() {
