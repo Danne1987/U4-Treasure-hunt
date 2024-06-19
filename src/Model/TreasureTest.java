@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class TreasureTest {
+public class TreasureTest implements HiddenObject {
     private Random random = new Random();
     private int[][] shape;
     int xCoord;
@@ -32,7 +32,12 @@ public class TreasureTest {
         }
     }
 
-    public String[][] returnTreasureToMap(String[][] map) {
+    /**
+     * @param map
+     * @return
+     */
+    @Override
+    public String[][] placeOnMap(String[][] map) {
         if (shape == null) {
             return map;
         }
@@ -68,6 +73,7 @@ public class TreasureTest {
         return map;
     }
 
+    @Override
     public void markDug(String[][] map, int row, int col) {
         for (int i = 0; i < coordinates.size(); i++) {
             int[] coords = coordinates.get(i);
@@ -77,17 +83,6 @@ public class TreasureTest {
                 break;
             }
         }
-
-
-        /*
-        for(int[] coord : coordinates) {
-            if (coord[0] == row && coord[1] == col) {
-                map[row][col] = "DUG";
-                break;
-            }
-        }
-
-         */
     }
 
     public boolean isComplete(){ //String[][] map) {
@@ -101,15 +96,5 @@ public class TreasureTest {
         }
         isCompleted = true;
         return true;
-
-        /*
-        for (int[] coord : coordinates) {
-            if(!map[coord[0]][coord[1]].equals("DUG")) {
-                return false;
-            }
-        }
-        return true;
-
-         */
     }
 }
