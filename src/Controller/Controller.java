@@ -105,30 +105,42 @@ public class Controller{
         String type = "";
         currentPlayer = getCurrentPlayer();
 
-        if (cell.equals("T")) {
-            JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
-            //implement something to indicate if full treasure or only part of it
-            currentPlayer.addScore(10);
-            type = "T";
-            for (TreasureTest treasure : map.getTTests()) {
-                treasure.markDug(mapSpelPlan, row, col);
-                if (treasure.isComplete()){     //(mapSpelPlan)) {
-                    JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
-                    currentPlayer.addScore(50);
+        if (!cell.equals("DUG")) {
+            if (cell.equals("T")) {
+                JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
+                //implement something to indicate if full treasure or only part of it
+                currentPlayer.addScore(10);
+                type = "T";
+                for (TreasureTest treasure : map.getTTests()) {
+                    treasure.markDug(mapSpelPlan, row, col);
+                    if (treasure.isComplete()){     //(mapSpelPlan)) {
+                        JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
+                        currentPlayer.addScore(50);
+                    }
                 }
             }
-        }
-        else if (cell.equals("D")) {
-            JOptionPane.showMessageDialog(null, "You fell in a Trap!");
-            currentPlayer.addScore(-5);
-            type = "D";
+            else if (cell.equals("D")) {
+                JOptionPane.showMessageDialog(null, "You fell in a Trap!");
+                isDug(mapSpelPlan, row, col);
+                currentPlayer.addScore(-5);
+                type = "D";
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Nothing here");
+                isDug(mapSpelPlan, row, col);
+            }
+
+            field.updateButton(row, col, type);
+
+            endTurn();
         }
         else {
-            JOptionPane.showMessageDialog(null, "Nothing here");
+            JOptionPane.showMessageDialog(null, "Try again");
         }
+    }
 
-        field.updateButton(row, col, type);
-
-        endTurn();
+    public void isDug(String[][] map, int row, int col) {
+        map[row][col] = "DUG";
+        System.out.println("The square has been dug");
     }
 }
