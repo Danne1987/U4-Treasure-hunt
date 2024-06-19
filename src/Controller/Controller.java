@@ -4,7 +4,7 @@ import Model.*;
 import javax.swing.*;
 
 public class Controller{
-    private ScoreController scoreController;
+    public ScoreController scoreController;
     private MapLogic map;
     //Treasure treasure = new Treasure(map.getSpelPlan());
     private PlayField field;

@@ -55,5 +55,7 @@ public class Viewer extends JFrame {
 
     public void onHighscoreButtonPressed() {
         //TODO: add method for showing highscore list
+        String highscoreList = controller.scoreController.getHighscoreList();
+        JOptionPane.showMessageDialog(this, highscoreList);
     }
 }

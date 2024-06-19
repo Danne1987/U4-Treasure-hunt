@@ -48,6 +48,16 @@ public class ScoreController {
         }
         writeScores(scores);
     }
+
+    public String getHighscoreList() {
+        List<ScoreEntry> scores = readScores();
+        StringBuilder highscoreList = new StringBuilder("Highscores: \n");
+        for (ScoreEntry score : scores) {
+            highscoreList.append(score.getPlayerName()).append(": ").append(score.getScore()).append("\n");
+        }
+        return highscoreList.toString();
+    }
+
 }
 
 class ScoreEntry {
