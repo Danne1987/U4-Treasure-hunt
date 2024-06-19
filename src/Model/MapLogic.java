@@ -2,7 +2,7 @@ package Model;
 
 public class MapLogic {
     String[][] spelPlan;
-    TreasureTest[] tTests;
+    Treasure[] treasures;
     Trap[] traps;
     public MapLogic() {
         spelPlan = new String[10][10];
@@ -11,10 +11,10 @@ public class MapLogic {
                 spelPlan[i][j] = "";
             }
         }
-        tTests = new TreasureTest[5];
-        for (int i = 0; i < tTests.length; i++) {
-            tTests[i] = new TreasureTest(i); // Assuming x = 0 for all objects
-            spelPlan = tTests[i].placeOnMap(spelPlan);
+        treasures = new Treasure[5];
+        for (int i = 0; i < treasures.length; i++) {
+            treasures[i] = new Treasure(i); // Assuming x = 0 for all objects
+            spelPlan = treasures[i].placeOnMap(spelPlan);
         }
         //Treasure.placeTreasures(spelPlan); //place treasures
         traps = new Trap[3];
@@ -28,7 +28,7 @@ public class MapLogic {
         return spelPlan;
     }
 
-    public TreasureTest[] getTTests() {
-        return tTests;
+    public Treasure[] getTTests() {
+        return treasures;
     }
 }

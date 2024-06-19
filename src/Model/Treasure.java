@@ -1,51 +1,100 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class Treasure {
-    public static void placeTreasures(String[][] map) {
-        // Define tetris-like shapes
-        int[][][] shapes = {
-                {{-1, 0}, {0, 0}, {1, 0}, {1, 1}}, //standing L-block
-                {{-1, 1}, {-1, 0}, {0, 0}, {1, 0}}, //standing J-block
-                {{0, -1}, {0, 0}, {0, 1}, {1, 1}}, // pointing down J-block
-                {{-1, -1}, {0, -1}, {0, 0}, {0, 1}}, // J-block normal
-                {{0, 0}, {1, 0}, {-1, 1}, {0, 1}}, //standing "Z"
-                {{0, 0}, {0, -1}, {1, -1}, {1, 0}}, //square
-                {{0,0}, {1,0}, {2,0}, {3,0}} // Straight up I-block
+public class Treasure implements HiddenObject {
+    private Random random = new Random();
+    private int[][] shape;
+    int xCoord;
+    int yCoord;
+    private List<int[]> coordinates = new ArrayList<>();
+    private boolean isCompleted;
+    private boolean[] dugPieces;
 
-        };
+    public Treasure(int x) {
+        if (x == 0) {
+            shape = new int[][]{{-1, 0}, {0, 0}, {1, 0}, {1, 1}};
+        }
+        if (x == 1){
+            shape = new int[][]{{0,0}, {1,0}, {2,0}, {3,0}};
+        }
+        if (x == 2){
+            shape = new int[][]{{-1, -1}, {0, -1}, {0, 0}, {0, 1}};
+        }
+        if (x == 3){
+            shape = new int[][]{{0, 0}, {0, -1}, {1, -1}, {1, 0}};
+        }
+        if (x == 4){
+            shape = new int[][]{{0, -1}, {0, 0}, {0, 1}, {1, 1}};
+        }
+    }
 
-        // Place treasures on the map
-        Random random = new Random();
+    /**
+     * @param map
+     * @return
+     */
+    @Override
+    public String[][] placeOnMap(String[][] map) {
+        if (shape == null) {
+            return map;
+        }
 
-        for (int[][] shape : shapes) {
-            boolean isValidPlacement = false;
+        boolean isValidPlacement = false;
 
-            while (!isValidPlacement) {
-                int startX = random.nextInt(map.length);
-                int startY = random.nextInt(map[0].length);
+        do {
+            xCoord = random.nextInt(map.length);
+            yCoord = random.nextInt(map[0].length);
 
-                isValidPlacement = true; //true until proven false
-                for (int[] coords : shape) {
-                    int x = coords[0] + startX;
-                    int y = coords[1] + startY;
+            isValidPlacement = true;
+            for (int[] coords : shape) {
+                int x = xCoord + coords[0];
+                int y = yCoord + coords[1];
 
-                    //check if out of bounds, or if there is already something else there
-                    if (x < 0 || x >= map.length || y < 0 || y >= map[0].length || !Objects.equals(map[x][y], "")) {
-                        isValidPlacement = false; //there was something on the index or it ended out of bounds
-                        break;
-                    }
-                }
-                if (isValidPlacement) { //nothing out of bounds or filled in the previous check
-                    for (int[] coords : shape) {
-                        int newX = coords[0] + startX;
-                        int newY = coords[1] + startY;
-                        map[newX][newY] = "T";
-                    }
+                if (x < 0 || x >= map.length || y < 0 || y >= map[0].length || !Objects.equals(map[x][y], "")) {
+                    isValidPlacement = false;
+                    break;
                 }
             }
+
+            if (isValidPlacement) {
+                for (int[] coords : shape) {
+                    int newX = xCoord + coords[0];
+                    int newY = yCoord + coords[1];
+                    map[newX][newY] = "T";
+                    coordinates.add(new int[]{newX, newY});
+                }
+                dugPieces = new boolean[coordinates.size()];
+            }
+        } while (!isValidPlacement);
+
+        return map;
+    }
+
+    @Override
+    public void markDug(String[][] map, int row, int col) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            int[] coords = coordinates.get(i);
+            if (coords[0] == row && coords[1] == col) {
+                map[row][col] = "DUG";
+                dugPieces[i] = true;
+                break;
+            }
         }
+    }
+
+    public boolean isComplete(){ //String[][] map) {
+        if (isCompleted) {
+            return false;
+        }
+        for (boolean dug : dugPieces) {
+            if (!dug) {
+                return false;
+            }
+        }
+        isCompleted = true;
+        return true;
     }
 }

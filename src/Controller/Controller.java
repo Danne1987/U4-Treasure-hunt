@@ -110,7 +110,7 @@ public class Controller{
                 //implement something to indicate if full treasure or only part of it
                 currentPlayer.addScore(10);
                 type = "T";
-                for (TreasureTest treasure : map.getTTests()) {
+                for (Treasure treasure : map.getTTests()) {
                     treasure.markDug(mapSpelPlan, row, col);
                     if (treasure.isComplete()){     //(mapSpelPlan)) {
                         JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
