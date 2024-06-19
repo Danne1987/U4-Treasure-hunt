@@ -40,12 +40,20 @@ public class Controller{
         String player2Name = player2.getName();
         int player2Score = player2.getScore();
 
-        JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
-                player1Name + ": " + player1Score + "\n" +
-                player2Name + ": " + player2Score);
 
-        scoreController.updateScores(player1Name, player1Score);
-        scoreController.updateScores(player2Name, player2Score);
+
+        if (player1Score > player2Score) {
+            scoreController.updateScores(player1Name, player1Score);
+            JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
+                    "You Win!\n" +
+                    player1Name + ": " + player1Score + "\n");
+        }
+        else if (player2Score > player1Score) {
+            scoreController.updateScores(player2Name, player2Score);
+            JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
+                    "You Win!\n" +
+                    player2Name + ": " + player2Score + "\n");
+        }
     }
 
     public void exitGame() {
