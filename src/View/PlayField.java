@@ -65,7 +65,6 @@ public class PlayField extends JPanel {
 
         if (type == "T") {
             button.setBackground(Color.GREEN);
-
         }
         else if (type == "D") {
             button.setBackground(Color.RED);
@@ -73,8 +72,6 @@ public class PlayField extends JPanel {
         else {
             button.setBackground(Color.DARK_GRAY);
         }
-
-        // button.setText("Clear!"); //does not show the whole text so better without
     }
 }
 

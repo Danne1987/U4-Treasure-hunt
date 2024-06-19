@@ -52,7 +52,6 @@ public class Viewer extends JFrame {
     public void onStartNewGameButtonPressed() {
         dispose();
         new Controller();
-
     }
 
     public void onHighscoreButtonPressed() {

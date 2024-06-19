@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScoreBar extends JPanel{
-    public ScoreBar()
-    {
+    public ScoreBar() {
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(500, 50));

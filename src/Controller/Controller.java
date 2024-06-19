@@ -34,7 +34,6 @@ public class Controller{
     }
 
     public void endGame() {
-        //TODO: logic to end the game
         String player1Name = player1.getName();
         int player1Score = player1.getScore();
 
@@ -45,7 +44,6 @@ public class Controller{
                 player1Name + ": " + player1Score + "\n" +
                 player2Name + ": " + player2Score);
 
-        //TODO: save the scores to the highscore list
         scoreController.updateScores(player1Name, player1Score);
         scoreController.updateScores(player2Name, player2Score);
     }
@@ -80,7 +78,8 @@ public class Controller{
         if (!gameOver) {
             if (currentPlayer == player1) {
                 currentPlayer = player2;
-            } else {
+            }
+            else {
                 currentPlayer = player1;
             }
             viewer.updateCurrentPlayer(currentPlayer.getName());
@@ -95,8 +94,6 @@ public class Controller{
     }
 
     public void dig(int row, int col) {
-        //TODO logic for the digging consequences
-
         String[][] mapSpelPlan = map.getSpelPlan();
         String cell = mapSpelPlan[row][col];
 
@@ -106,7 +103,6 @@ public class Controller{
         if (!cell.equals("DUG")) {
             if (cell.equals("T")) {
                 JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
-                //implement something to indicate if full treasure or only part of it
                 currentPlayer.addScore(10);
                 type = "T";
                 for (Treasure treasure : map.getTTests()) {

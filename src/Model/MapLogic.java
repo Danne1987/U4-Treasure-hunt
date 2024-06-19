@@ -17,7 +17,6 @@ public class MapLogic {
             treasures[i] = new Treasure(i); // Assuming x = 0 for all objects
             spelPlan = treasures[i].placeOnMap(spelPlan);
         }
-        //Treasure.placeTreasures(spelPlan); //place treasures
         traps = new Trap[3];
         for(int i = 0; i < traps.length; i++) {
             traps[i] = new Trap();
