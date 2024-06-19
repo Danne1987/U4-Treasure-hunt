@@ -8,8 +8,6 @@ import java.util.Random;
 public class Treasure implements HiddenObject {
     private Random random = new Random();
     private int[][] shape;
-    int xCoord;
-    int yCoord;
     private List<int[]> coordinates = new ArrayList<>();
     private boolean isCompleted;
     private boolean[] dugPieces;
@@ -45,8 +43,8 @@ public class Treasure implements HiddenObject {
         boolean isValidPlacement = false;
 
         do {
-            xCoord = random.nextInt(map.length);
-            yCoord = random.nextInt(map[0].length);
+            int xCoord = random.nextInt(map.length);
+            int yCoord = random.nextInt(map[0].length);
 
             isValidPlacement = true;
             for (int[] coords : shape) {
@@ -85,7 +83,7 @@ public class Treasure implements HiddenObject {
         }
     }
 
-    public boolean isComplete(){ //String[][] map) {
+    public boolean isComplete(){
         if (isCompleted) {
             return false;
         }
