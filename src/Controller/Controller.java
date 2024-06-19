@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Controller{
     private ScoreController scoreController;
-    private MapLogic map;
+    private Map map;
     private PlayField field;
     private Viewer viewer;
     private Player player1;
@@ -16,7 +16,7 @@ public class Controller{
 
     public Controller(){
         scoreController = new ScoreController();
-        map = new MapLogic();
+        map = new Map();
         field = new PlayField(map.getSpelPlan(), this);
         viewer = new Viewer(field, this, scoreController);
 
@@ -105,7 +105,7 @@ public class Controller{
                 JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
                 currentPlayer.addScore(10);
                 type = "T";
-                for (Treasure treasure : map.getTTests()) {
+                for (Treasure treasure : map.getTreasures()) {
                     treasure.markDug(mapSpelPlan, row, col);
                     if (treasure.isComplete()){     //(mapSpelPlan)) {
                         JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
