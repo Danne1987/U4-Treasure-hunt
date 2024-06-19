@@ -1,9 +1,9 @@
 package Model;
 
 public class MapLogic {
-    String[][] spelPlan;
-    Treasure[] treasures;
-    Trap[] traps;
+    private String[][] spelPlan;
+    private Treasure[] treasures;
+    private Trap[] traps;
     public MapLogic() {
         spelPlan = new String[10][10];
         for(int i = 0; i < spelPlan.length; i++) {

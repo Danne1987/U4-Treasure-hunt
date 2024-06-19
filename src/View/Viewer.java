@@ -3,11 +3,12 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
-import Controller.Controller;
+import Controller.*;
 
 public class Viewer extends JFrame {
     private JLabel currentPlayerLabel;
     private Controller controller;
+    private ScoreController scoreController;
 
     public Viewer(PlayField pField, Controller controller) {
         this.controller = controller;
@@ -54,8 +55,7 @@ public class Viewer extends JFrame {
     }
 
     public void onHighscoreButtonPressed() {
-        //TODO: add method for showing highscore list
-        String highscoreList = controller.scoreController.getHighscoreList();
+        String highscoreList = scoreController.getHighscoreList();
         JOptionPane.showMessageDialog(this, highscoreList);
     }
 }
