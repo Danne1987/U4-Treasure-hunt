@@ -10,8 +10,9 @@ public class Viewer extends JFrame {
     private Controller controller;
     private ScoreController scoreController;
 
-    public Viewer(PlayField pField, Controller controller) {
+    public Viewer(PlayField pField, Controller controller, ScoreController scoreController) {
         this.controller = controller;
+        this.scoreController = scoreController;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700,700);
         setLocation(200, 200);

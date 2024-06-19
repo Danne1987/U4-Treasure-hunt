@@ -18,7 +18,7 @@ public class Controller{
         scoreController = new ScoreController();
         map = new MapLogic();
         field = new PlayField(map.getSpelPlan(), this);
-        viewer = new Viewer(field, this);
+        viewer = new Viewer(field, this, scoreController);
 
         startGame();
     }
