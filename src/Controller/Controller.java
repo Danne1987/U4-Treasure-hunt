@@ -41,6 +41,7 @@ public class Controller{
         int player2Score = player2.getScore();
 
 
+        //TODO: Can make this nicer
 
         if (player1Score > player2Score) {
             scoreController.updateScores(player1Name, player1Score);
