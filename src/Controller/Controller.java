@@ -17,7 +17,7 @@ public class Controller{
     public Controller(){
         scoreController = new ScoreController();
         map = new Map();
-        field = new PlayField(map.getSpelPlan(), this);
+        field = new PlayField(map.getMap(), this);
         viewer = new Viewer(field, this, scoreController);
 
         startGame();
@@ -64,7 +64,7 @@ public class Controller{
     public void checkGameOver() {
         boolean allTreasureDug = true;
 
-        String[][] mapSpelPlan = map.getSpelPlan();
+        String[][] mapSpelPlan = map.getMap();
 
         for (int row = 0; row < mapSpelPlan.length; row++) {
             for (int col = 0; col < mapSpelPlan[row].length; col++) {
@@ -104,7 +104,7 @@ public class Controller{
     }
 
     public void dig(int row, int col) {
-        String[][] mapSpelPlan = map.getSpelPlan();
+        String[][] mapSpelPlan = map.getMap();
         String cell = mapSpelPlan[row][col];
 
         String type = "";

@@ -24,7 +24,7 @@ public class Map {
         }
     }
 
-    public String[][] getSpelPlan() {
+    public String[][] getMap() {
         return spelPlan;
     }
 
