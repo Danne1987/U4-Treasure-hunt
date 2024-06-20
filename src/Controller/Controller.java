@@ -83,6 +83,7 @@ public class Controller{
                 currentPlayer = player1;
             }
             viewer.updateCurrentPlayer(currentPlayer.getName());
+            viewer.updateCurrentPlayerScore(currentPlayer.getScore());
         }
         else {
             endGame();

@@ -7,6 +7,7 @@ import Controller.*;
 
 public class Viewer extends JFrame {
     private JLabel currentPlayerLabel;
+    private JLabel scoreCount;
     private Controller controller;
     private ScoreController scoreController;
 
@@ -22,11 +23,11 @@ public class Viewer extends JFrame {
         setLayout(new BorderLayout());
 
         ScoreBar scoreBar = new ScoreBar();
-        JLabel scoreCountPlayer1 = new JLabel("Score kommer visas här!");
+        scoreCount = new JLabel("Score: 0");
         currentPlayerLabel = new JLabel("Current Player: ", SwingConstants.CENTER);
         //JLabel scoreCountPlayer2 = new JLabel("Score kommer visas här!");
 
-        scoreBar.add(scoreCountPlayer1);
+        scoreBar.add(scoreCount);
         scoreBar.add(currentPlayerLabel);
         //scoreBar.add(scoreCountPlayer2);
 
@@ -43,6 +44,7 @@ public class Viewer extends JFrame {
     public void updateCurrentPlayer(String playerName) {
         currentPlayerLabel.setText("Current Player: " + playerName);
     }
+    public void updateCurrentPlayerScore(int playerScore){scoreCount.setText("Player score: " + playerScore);}
 
     public void onEndGameButtonPressed() {
         controller.endGame();
