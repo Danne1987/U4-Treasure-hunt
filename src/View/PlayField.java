@@ -7,9 +7,22 @@ import java.awt.event.ActionListener;
 
 import Controller.Controller;
 
+/**
+ *This class creates the buttons for the playing field
+ * @author Daniel & Sarah
+ */
 public class PlayField extends JPanel {
+    /**
+     * Object of controller, used to call the dig method in the controller
+     */
     private Controller controller;
 
+    /**
+     * Constructor for the PlayField class, creates all the buttons and places them.
+     * @param map
+     * @param controller
+     * @author Daniel & Sarah
+     */
     public PlayField(String[][] map, Controller controller) {
         this.controller = controller;
         setBackground(Color.BLUE);
@@ -47,6 +60,11 @@ public class PlayField extends JPanel {
         }
     }
 
+    /**
+     * This method gets the index of a pressed button on the playing field
+     * @param component
+     * @return Int cointaining the index of a pressed button.
+     */
     private int getComponentIndex(Component component) {
         Container container = component.getParent();
         for (int i = 0; i < container.getComponentCount(); i++) {
@@ -59,6 +77,14 @@ public class PlayField extends JPanel {
 
 
     //TODO: only if we want to indicate somehow that a square has been dug, and possibly what type?
+
+    /**
+     * This method updates the buttons on the playing field, properly showing what was in a dug area.
+     * @param row
+     * @param col
+     * @param type
+     * @author Sarah.
+     */
     public void updateButton(int row, int col, String type) {
         int index = (row)* 11 + (col + 1);
         JButton button = (JButton) getComponent(index);

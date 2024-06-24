@@ -2,13 +2,21 @@ package Model;
 import java.util.Objects;
 import java.util.Random;
 
-
+/**
+ * This class creates the traps on the map.
+ * @author Daniel & Sarah
+ */
 public class Trap implements HiddenObject {
+    /**
+     * Random for placing traps randomly on the map. Implements the HiddenObject interface
+     */
     private static Random random = new Random();
 
     /**
-     * @param map
-     * @return
+     * This method places the trap on the map
+     * @param map For having something to place the traps on
+     * @return Returns the modified map
+     * @author Daniel & Sarah
      */
     @Override
     public String[][] placeOnMap(String[][] map) {
@@ -27,9 +35,11 @@ public class Trap implements HiddenObject {
     }
 
     /**
+     * Marks a dug area on the map as "DUG"
      * @param map
      * @param row
      * @param col
+     * @author Sarah
      */
     @Override
     public void markDug(String[][] map, int row, int col) {

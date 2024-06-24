@@ -1,10 +1,27 @@
 package Model;
 
+/**
+ * This class creates the map by placing the treasures and traps.
+ * @author Daniel & Sarah
+ */
 public class Map {
+    /**
+     * String array used as a map for the game.
+     */
     private String[][] map;
+    /**
+     * Object of treasures, used to place treasures on the map.
+     */
     private Treasure[] treasures;
+    /**
+     * Object of trap, used to place traps on the map.
+     */
     private Trap[] traps;
 
+    /**
+     * This method draws the map by creating empty slots and then filling them randomly with treasures and traps.
+     * @author Daniel & Sarah
+     */
     public Map() {
         map = new String[10][10];
         for(int i = 0; i < map.length; i++) {
@@ -24,10 +41,20 @@ public class Map {
         }
     }
 
+    /**
+     * Returns the map.
+     * @return Returns the string array for the map.
+     * @author Sarah
+     */
     public String[][] getMap() {
         return map;
     }
 
+    /**
+     * Returns treasures.
+     * @return Returns object of Treasure.
+     * @author Sarah
+     */
     public Treasure[] getTreasures() {
         return treasures;
     }

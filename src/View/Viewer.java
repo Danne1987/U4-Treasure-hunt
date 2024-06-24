@@ -5,12 +5,35 @@ import java.awt.*;
 
 import Controller.*;
 
+/**
+ * This class is the boundary for the game. It keeps track of all buttons and labels.
+ * @author Daniel & Sarah
+ */
 public class Viewer extends JFrame {
+    /**
+     * Label meant to show the name of the current player.
+     */
     private JLabel currentPlayerLabel;
+    /**
+     * Label meant to show the current players score.
+     */
     private JLabel scoreCount;
+    /**
+     * Object of the controller.
+     */
     private Controller controller;
+    /**
+     * Object of the ScoreController.
+     */
     private ScoreController scoreController;
 
+    /**
+     * The constructor for the Viewer class. It collects the buttons and scorebar from the other boundary classes and places them in the window.
+     * @param pField
+     * @param controller
+     * @param scoreController
+     * @author Daniel & Sarah
+     */
     public Viewer(PlayField pField, Controller controller, ScoreController scoreController) {
         this.controller = controller;
         this.scoreController = scoreController;
@@ -41,21 +64,44 @@ public class Viewer extends JFrame {
 
     }
 
+    /**
+     * Updates the current player label to show the current players name.
+     * @param playerName
+     * @author Sarah
+     */
     public void updateCurrentPlayer(String playerName) {
         currentPlayerLabel.setText("Current Player: " + playerName);
     }
+
+    /**
+     * Updates the score label for the current player.
+     * @param playerScore
+     * @author Daniel
+     */
     public void updateCurrentPlayerScore(int playerScore){scoreCount.setText("Player score: " + playerScore);}
 
+    /**
+     * Method to end the game.
+     * @author Sarah
+     */
     public void onEndGameButtonPressed() {
         controller.endGame();
         controller.exitGame();
     }
 
+    /**
+     * Method to start a new game.
+     * @author Sarah.
+     */
     public void onStartNewGameButtonPressed() {
         dispose();
         new Controller();
     }
 
+    /**
+     * Method to show the highscore list.
+     * @author Sarah
+     */
     public void onHighscoreButtonPressed() {
         String highscoreList = scoreController.getHighscoreList();
         JOptionPane.showMessageDialog(this, highscoreList);

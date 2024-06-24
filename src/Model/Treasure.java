@@ -5,13 +5,37 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * This class places treasures on the map. The shapes are determined by a parameter from when the object was created.
+ * @author Daniel & Sarah
+ */
 public class Treasure implements HiddenObject {
+    /**
+     * Random for placing the traps.
+     */
     private Random random = new Random();
+    /**
+     * int array used to determine the shape of the treasure.
+     */
     private int[][] shape;
+    /**
+     * List of coordinates for the placed treasure.
+     */
     private List<int[]> coordinates = new ArrayList<>();
+    /**
+     * Boolean use to check if the entire treasure has been dug up.
+     */
     private boolean isCompleted;
+    /**
+     * Boolean to check which parts of the treasure has been dug up.
+     */
     private boolean[] dugPieces;
 
+    /**
+     * Constructor which holds the different shapes. Which shape is used is determined by the parameter.
+     * @param x
+     * @author Daniel & Sarah
+     */
     public Treasure(int x) {
         if (x == 0) {
             shape = new int[][]{{-1, 0}, {0, 0}, {1, 0}, {1, 1}};
@@ -31,8 +55,10 @@ public class Treasure implements HiddenObject {
     }
 
     /**
+     * This method places the treasures on the map and returns the map.
      * @param map
-     * @return
+     * @return Returns the map after treasures have been placed on it.
+     * @author Daniel & Sarah
      */
     @Override
     public String[][] placeOnMap(String[][] map) {
@@ -71,6 +97,13 @@ public class Treasure implements HiddenObject {
         return map;
     }
 
+    /**
+     * This method marks an area on the map as "DUG".
+     * @param map
+     * @param row
+     * @param col
+     * @author Sarah
+     */
     @Override
     public void markDug(String[][] map, int row, int col) {
         for (int i = 0; i < coordinates.size(); i++) {
@@ -83,6 +116,10 @@ public class Treasure implements HiddenObject {
         }
     }
 
+    /**
+     * This method checks if the entire trap is dug up.
+     * @return Boolean for checking if the treasure has been dug up
+     */
     public boolean isComplete(){
         if (isCompleted) {
             return false;

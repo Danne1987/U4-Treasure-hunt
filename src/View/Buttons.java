@@ -5,9 +5,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class creates the buttons used by the Viewer
+ * @author Daniel & Sarah
+ */
 public class Buttons extends JPanel {
+    /**
+     * Object of Viewer
+     */
     private Viewer viewer;
 
+    /**
+     * This method creates and places the buttons in the bottom row.
+     * @param viewer
+     * @author Daniel & Sarah
+     */
     public Buttons(Viewer viewer) {
         this.viewer = viewer;
         setLayout(new GridLayout(1,2));
