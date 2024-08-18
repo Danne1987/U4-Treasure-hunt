@@ -33,8 +33,8 @@ public class PlayField extends JPanel {
             JLabel rowLabel = new JLabel(String.valueOf(i), SwingConstants.CENTER);
             add(rowLabel);
             for (int j = 0; j < 10; j++) {
-                JButton button = new JButton(map[i-1][j]); //this shows traps and treasures on the field
-                //JButton button = new JButton(""); //this sets the initial value to be empty, traps and treasures visible when dug
+                //JButton button = new JButton(map[i-1][j]); //this shows traps and treasures on the field
+                JButton button = new JButton(""); //this sets the initial value to be empty, traps and treasures visible when dug
                 button.setPreferredSize(new Dimension(50, 50));
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -47,7 +47,6 @@ public class PlayField extends JPanel {
                         System.out.println("Button clicked at row " + (row + 1) + ", column " + (col + 1));
 
                         controller.dig(row, col);
-                        //TODO: research if needed here, or if it can be only logic in the controller calling to update boundary
                     }
                 });
                 add(button);

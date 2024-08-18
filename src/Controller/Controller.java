@@ -178,7 +178,7 @@ public class Controller{
                 type = "T";
                 for (Treasure treasure : map.getTreasures()) {
                     treasure.markDug(mapSpelPlan, row, col);
-                    if (treasure.isComplete()){     //(mapSpelPlan)) {
+                    if (treasure.isComplete()){
                         JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
                         currentPlayer.addScore(50);
                     }
