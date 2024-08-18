@@ -79,9 +79,6 @@ public class Controller{
         String player2Name = player2.getName();
         int player2Score = player2.getScore();
 
-
-        //TODO: Can make this nicer
-
         if (player1Score > player2Score) {
             scoreController.updateScores(player1Name, player1Score);
             JOptionPane.showMessageDialog(viewer, "Game Over!\n" +
@@ -105,7 +102,7 @@ public class Controller{
     }
 
     /**
-     * This methods checks if all treasure is dug up. If all treasure is dug up, the game ends.
+     * This method checks if all treasure is dug up. If all treasure is dug up, the game ends.
      * @author Sarah
      */
     public void checkGameOver() {
