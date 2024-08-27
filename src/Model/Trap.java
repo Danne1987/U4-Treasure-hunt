@@ -1,48 +1,52 @@
 package Model;
-import java.util.Objects;
 import java.util.Random;
 
 /**
- * This class creates the traps on the map.
+ * This class represents the traps on the map.
  * @author Daniel & Sarah
  */
-public class Trap implements HiddenObject {
+public class Trap implements MapCell {
     /**
      * Random for placing traps randomly on the map. Implements the HiddenObject interface
      */
     private static Random random = new Random();
+    /**
+     * boolean for status if cell has been dug
+     */
+    private boolean isDug = false;
 
     /**
-     * This method places the trap on the map
-     * @param map For having something to place the traps on
-     * @return Returns the modified map
-     * @author Daniel & Sarah
+     * check if the cell is dug
+     * @return
      */
     @Override
-    public String[][] placeOnMap(String[][] map) {
-        boolean validTrapPlace = true;
-
-        while(validTrapPlace) {
-            int x = random.nextInt(map.length);
-            int y = random.nextInt(map[0].length);
-
-            if(!Objects.equals(map[x][y], "T")) {
-                map[x][y] = "D";
-                validTrapPlace = false;
-            }
-        }
-        return map;
+    public boolean isDug() {
+        return isDug;
     }
 
     /**
-     * Marks a dug area on the map as "DUG"
-     * @param map
-     * @param row
-     * @param col
-     * @author Sarah
+     * change isDug to true when cell has been dug
      */
     @Override
-    public void markDug(String[][] map, int row, int col) {
-        map[row][col] = "DUG";
+    public void dig() {
+        this.isDug = true;
+    }
+
+    /**
+     * check if cell contains Treasure
+     * @return
+     */
+    @Override
+    public boolean containsTreasure() {
+        return false;
+    }
+
+    /**
+     * check if cell contains Trap
+     * @return
+     */
+    @Override
+    public boolean containsTrap() {
+        return true;
     }
 }

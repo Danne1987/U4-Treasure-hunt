@@ -1,15 +1,12 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 /**
- * This class places treasures on the map. The shapes are determined by a parameter from when the object was created.
+ * This class represents treasures on the map. The shapes are determined by a parameter from when the object was created.
  * @author Daniel & Sarah
  */
-public class Treasure implements HiddenObject {
+public class Treasure implements MapCell {
     /**
      * Random for placing the traps.
      */
@@ -19,9 +16,13 @@ public class Treasure implements HiddenObject {
      */
     private int[][] shape;
     /**
-     * List of coordinates for the placed treasure.
+     * X-coordinates
      */
-    private List<int[]> coordinates = new ArrayList<>();
+    private int xCoord;
+    /**
+     * Y-coordinates
+     */
+    private int yCoord;
     /**
      * Boolean use to check if the entire treasure has been dug up.
      */
@@ -30,10 +31,17 @@ public class Treasure implements HiddenObject {
      * Boolean to check which parts of the treasure has been dug up.
      */
     private boolean[] dugPieces;
-
+    /**
+     * Boolean for state of cell to check if it has been dug
+     */
+    private boolean isDug = false;
+    /**
+     * Integer to count amount of dug pieces in one treasure
+     */
+    private int dugPiece = 0;
     /**
      * Constructor which holds the different shapes. Which shape is used is determined by the parameter.
-     * @param x
+     * @param
      * @author Daniel & Sarah
      */
     public Treasure(int x) {
@@ -55,81 +63,93 @@ public class Treasure implements HiddenObject {
     }
 
     /**
-     * This method places the treasures on the map and returns the map.
-     * @param map
-     * @return Returns the map after treasures have been placed on it.
-     * @author Daniel & Sarah
+     * Method to add amount of dug pieces within a treasure
      */
-    @Override
-    public String[][] placeOnMap(String[][] map) {
-        if (shape == null) {
-            return map;
-        }
-
-        boolean isValidPlacement = false;
-
-        do {
-            int xCoord = random.nextInt(map.length);
-            int yCoord = random.nextInt(map[0].length);
-
-            isValidPlacement = true;
-            for (int[] coords : shape) {
-                int x = xCoord + coords[0];
-                int y = yCoord + coords[1];
-
-                if (x < 0 || x >= map.length || y < 0 || y >= map[0].length || !Objects.equals(map[x][y], "")) {
-                    isValidPlacement = false;
-                    break;
-                }
-            }
-
-            if (isValidPlacement) {
-                for (int[] coords : shape) {
-                    int newX = xCoord + coords[0];
-                    int newY = yCoord + coords[1];
-                    map[newX][newY] = "T";
-                    coordinates.add(new int[]{newX, newY});
-                }
-                dugPieces = new boolean[coordinates.size()];
-            }
-        } while (!isValidPlacement);
-
-        return map;
+    public void addDugPieces() {
+        dugPiece++ ;
     }
 
     /**
-     * This method marks an area on the map as "DUG".
-     * @param map
-     * @param row
-     * @param col
-     * @author Sarah
+     * Returns how many pieces of a treasure has been dug
+     * @return dugPiece
      */
-    @Override
-    public void markDug(String[][] map, int row, int col) {
-        for (int i = 0; i < coordinates.size(); i++) {
-            int[] coords = coordinates.get(i);
-            if (coords[0] == row && coords[1] == col) {
-                map[row][col] = "DUG";
-                dugPieces[i] = true;
-                break;
-            }
-        }
+    public int getDugPiece() {
+        return dugPiece;
     }
 
     /**
-     * This method checks if the entire trap is dug up.
-     * @return Boolean for checking if the treasure has been dug up
+     * Check if the cell is dug
+     * @return boolean
      */
-    public boolean isComplete(){
-        if (isCompleted) {
-            return false;
-        }
-        for (boolean dug : dugPieces) {
-            if (!dug) {
-                return false;
-            }
-        }
-        isCompleted = true;
+    @Override
+    public boolean isDug() {
+        return isDug;
+    }
+
+    /**
+     * Sets the isDug boolean to true when a cell has been dug
+     */
+    public void dig() {
+        this.isDug = true;
+    }
+
+    /**
+     * Check cell contents for Treasure
+     * @return boolean
+     */
+    @Override
+    public boolean containsTreasure() {
         return true;
     }
+
+    /**
+     * Check cell contents for Trap
+     * @return
+     */
+    @Override
+    public boolean containsTrap() {
+        return false;
+    }
+
+    /**
+     * Method to return the treasure shape
+     * @return int[][]
+     */
+    public int[][] getShape() {
+        return shape;
+    }
+
+    /**
+     * Sets the X-coordinate
+     * @param xCoord
+     */
+    public void setXCoord(int xCoord) {
+        this.xCoord = xCoord;
+    }
+
+    /**
+     * Sets the Y-coordinate
+     * @param yCoord
+     */
+    public void setYCoord(int yCoord) {
+        this.yCoord = yCoord;
+    }
+
+    /**
+     * Gets the X-coordinate
+     * @return
+     */
+    public int getXCoord() {
+        return xCoord;
+    }
+
+    /**
+     * Gets the Y-coordinate
+     * @return
+     */
+    public int getYCoord() {
+        return yCoord;
+    }
 }
+
+

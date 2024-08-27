@@ -1,11 +1,12 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import Controller.Controller;
+import java.util.Arrays;
 
 /**
  *This class creates the buttons for the playing field
@@ -28,6 +29,7 @@ public class PlayField extends JPanel {
         setBackground(Color.BLUE);
         setLayout(new GridLayout(11, 11));
         setPreferredSize(new Dimension(500, 500));
+        System.out.println(Arrays.deepToString(map));
 
         for (int i = 1; i <= 10; i++) {
             JLabel rowLabel = new JLabel(String.valueOf(i), SwingConstants.CENTER);
@@ -74,28 +76,29 @@ public class PlayField extends JPanel {
         return -1;
     }
 
-
-    //TODO: only if we want to indicate somehow that a square has been dug, and possibly what type?
-
     /**
      * This method updates the buttons on the playing field, properly showing what was in a dug area.
      * @param row
      * @param col
-     * @param type
+     * @param
      * @author Sarah.
      */
-    public void updateButton(int row, int col, String type) {
+    public void updateButton(int row, int col, String cellState) {
         int index = (row)* 11 + (col + 1);
         JButton button = (JButton) getComponent(index);
-
-        if (type == "T") {
-            button.setBackground(Color.GREEN);
-        }
-        else if (type == "D") {
-            button.setBackground(Color.RED);
-        }
-        else {
-            button.setBackground(Color.DARK_GRAY);
+        switch (cellState) {
+            case "T":
+                button.setBackground(Color.GREEN);
+                break;
+            case "D":
+                button.setBackground(Color.RED);
+                break;
+            case "DUG" :
+                button.setBackground(Color.DARK_GRAY);
+                break;
+            default:
+                button.setBackground(Color.white);
+                break;
         }
     }
 }

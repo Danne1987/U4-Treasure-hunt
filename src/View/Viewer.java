@@ -1,9 +1,10 @@
 package View;
 
+import Controller.Controller;
+import Controller.ScoreController;
+
 import javax.swing.*;
 import java.awt.*;
-
-import Controller.*;
 
 /**
  * This class is the boundary for the game. It keeps track of all buttons and labels.
