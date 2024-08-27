@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import Controller.Controller;
 
@@ -23,7 +24,7 @@ public class PlayField extends JPanel {
      * @param controller
      * @author Daniel & Sarah
      */
-    public PlayField(String[][] map, Controller controller) {
+    public PlayField(String[][] map, Controller controller) { //String[][] map, Controller controller) {
         this.controller = controller;
         setBackground(Color.BLUE);
         setLayout(new GridLayout(11, 11));
@@ -59,6 +60,8 @@ public class PlayField extends JPanel {
         }
     }
 
+
+
     /**
      * This method gets the index of a pressed button on the playing field
      * @param component
@@ -81,21 +84,42 @@ public class PlayField extends JPanel {
      * This method updates the buttons on the playing field, properly showing what was in a dug area.
      * @param row
      * @param col
-     * @param type
+     * @param
      * @author Sarah.
      */
-    public void updateButton(int row, int col, String type) {
+    public void updateButton(int row, int col, String cellState) {
         int index = (row)* 11 + (col + 1);
         JButton button = (JButton) getComponent(index);
+        updateButtonAppearance(button, cellState);
 
-        if (type == "T") {
+        /*
+        if (Objects.equals(type, "T")) {
             button.setBackground(Color.GREEN);
         }
-        else if (type == "D") {
+        else if (Objects.equals(type, "D")) {
             button.setBackground(Color.RED);
         }
         else {
             button.setBackground(Color.DARK_GRAY);
+        }
+
+         */
+    }
+
+    private void updateButtonAppearance(JButton button, String cellState) {
+        switch (cellState) {
+            case "T":
+                button.setBackground(Color.GREEN);
+                break;
+            case "D":
+                button.setBackground(Color.RED);
+                break;
+            case "DUG" :
+                button.setBackground(Color.DARK_GRAY);
+                break;
+            default:
+                button.setBackground(Color.white);
+                break;
         }
     }
 }

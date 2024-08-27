@@ -2,6 +2,7 @@ package Controller;
 import View.*;
 import Model.*;
 import javax.swing.*;
+import java.util.Arrays;
 
 /**
  * The controller class deals with the games logic, and calls for the map to be made.
@@ -48,10 +49,40 @@ public class Controller{
     public Controller(){
         scoreController = new ScoreController();
         map = new Map();
-        field = new PlayField(map.getMap(), this);
+
+        String[][] stringMap = convertMapCellToString(map.getMap());
+        field = new PlayField(stringMap, this);
         viewer = new Viewer(field, this, scoreController);
 
         startGame();
+    }
+
+    private String[][] convertMapCellToString(MapCell[][] mapCells){
+        int rows = mapCells.length;
+        int cols = mapCells[0].length;
+        String[][] stringMap = new String[rows][cols];
+
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                MapCell cell = mapCells[i][j];
+                if (cell.isDug()) {
+                    if (cell.containsTreasure()) {
+                        stringMap[i][j] = "T";
+                    }
+                    else if (cell.containsTrap()) {
+                        stringMap[i][j] = "D";
+                    }
+                    else {
+                        stringMap[i][j] = "DUG";
+                    }
+                }
+                else {
+                    stringMap[i][j] = "";
+                }
+            }
+
+        }
+        return stringMap;
     }
 
     /**
@@ -108,7 +139,9 @@ public class Controller{
     public void checkGameOver() {
         boolean allTreasureDug = true;
 
-        String[][] mapSpelPlan = map.getMap();
+        //String[][] mapSpelPlan = map.getMap();
+        MapCell[][] mapSpelPlan = map.getMap();
+
 
         for (int row = 0; row < mapSpelPlan.length; row++) {
             for (int col = 0; col < mapSpelPlan[row].length; col++) {
@@ -165,34 +198,38 @@ public class Controller{
      * @author Sarah
      */
     public void dig(int row, int col) {
-        String[][] mapSpelPlan = map.getMap();
-        String cell = mapSpelPlan[row][col];
+        //String[][] mapSpelPlan = map.getMap();
+        //String cell = mapSpelPlan[row][col];
+        MapCell[][] mapSpelPlan = map.getMap();
+        MapCell cell = mapSpelPlan[row][col];
 
         String type = "";
         currentPlayer = getCurrentPlayer();
 
-        if (!cell.equals("DUG")) {
-            if (cell.equals("T")) {
+        if (!cell.isDug()) {//!cell.equals("DUG")) {
+            cell.dig();
+
+            if (cell.containsTreasure()){//cell.equals("T")) {
                 JOptionPane.showMessageDialog(null, "You found Treasure! You get points");
                 currentPlayer.addScore(10);
                 type = "T";
                 for (Treasure treasure : map.getTreasures()) {
-                    treasure.markDug(mapSpelPlan, row, col);
+                    //treasure.markDug(mapSpelPlan, row, col);
                     if (treasure.isComplete()){
                         JOptionPane.showMessageDialog(null, "You completed a Treasure! Additional points rewarded");
                         currentPlayer.addScore(50);
                     }
                 }
             }
-            else if (cell.equals("D")) {
+            else if (cell.containsTrap()) {//cell.equals("D")) {
                 JOptionPane.showMessageDialog(null, "You fell in a Trap!");
-                isDug(mapSpelPlan, row, col);
+                //isDug(mapSpelPlan, row, col);
                 currentPlayer.addScore(-5);
                 type = "D";
             }
             else {
                 JOptionPane.showMessageDialog(null, "Nothing here");
-                isDug(mapSpelPlan, row, col);
+                //isDug(mapSpelPlan, row, col);
             }
 
             field.updateButton(row, col, type);
@@ -214,5 +251,23 @@ public class Controller{
     public void isDug(String[][] map, int row, int col) {
         map[row][col] = "DUG";
         System.out.println("The square has been dug");
+    }
+
+    public String getCellState(int row, int col) {
+        MapCell cell = map.getMap()[row][col];
+        if (cell.isDug()) {
+            if (cell.containsTreasure()) {
+                return "T";
+            }
+            else if (cell.containsTrap()) {
+                return "D";
+            }
+            else {
+                return "DUG";
+            }
+        }
+        else {
+            return "";
+        }
     }
 }

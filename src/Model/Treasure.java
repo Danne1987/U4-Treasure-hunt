@@ -9,7 +9,7 @@ import java.util.Random;
  * This class places treasures on the map. The shapes are determined by a parameter from when the object was created.
  * @author Daniel & Sarah
  */
-public class Treasure implements HiddenObject {
+public class Treasure implements MapCell {
     /**
      * Random for placing the traps.
      */
@@ -31,11 +31,19 @@ public class Treasure implements HiddenObject {
      */
     private boolean[] dugPieces;
 
+    private boolean isDug = false;
+
     /**
      * Constructor which holds the different shapes. Which shape is used is determined by the parameter.
-     * @param x
+     * @param
      * @author Daniel & Sarah
      */
+
+    public Treasure(MapCell[][] map, int[][] shape) {
+        placeOnMap(map, shape);
+    }
+
+
     public Treasure(int x) {
         if (x == 0) {
             shape = new int[][]{{-1, 0}, {0, 0}, {1, 0}, {1, 1}};
@@ -54,17 +62,35 @@ public class Treasure implements HiddenObject {
         }
     }
 
+
+
+    public static int[][] getShape(int type) {
+        switch (type) {
+            case 0:
+                return new int[][]{{-1, 0}, {0, 0}, {1, 0}, {1, 1}};
+            case 1:
+                return new int[][]{{0, 0}, {1, 0}, {2, 0}, {3, 0}};
+            case 2:
+                return new int[][]{{-1, -1}, {0, -1}, {0, 0}, {0, 1}};
+            case 3:
+                return new int[][]{{0, 0}, {0, -1}, {1, -1}, {1, 0}};
+            case 4:
+                return new int[][]{{0, -1}, {0, 0}, {0, 1}, {1, 1}};
+            default:
+                throw new IllegalArgumentException("Invalid shape type");
+        }
+    }
+
     /**
      * This method places the treasures on the map and returns the map.
      * @param map
      * @return Returns the map after treasures have been placed on it.
      * @author Daniel & Sarah
      */
-    @Override
-    public String[][] placeOnMap(String[][] map) {
-        if (shape == null) {
-            return map;
-        }
+    //@Override
+    //public String[][] placeOnMap() {//String[][] map) {
+    public void placeOnMap(MapCell[][] map, int[][] shape) {
+        //if (shape == null) { return map; }
 
         boolean isValidPlacement = false;
 
@@ -87,14 +113,15 @@ public class Treasure implements HiddenObject {
                 for (int[] coords : shape) {
                     int newX = xCoord + coords[0];
                     int newY = yCoord + coords[1];
-                    map[newX][newY] = "T";
+                    //map[newX][newY] = "T";
+                    map[newX][newY] = this;
                     coordinates.add(new int[]{newX, newY});
                 }
                 dugPieces = new boolean[coordinates.size()];
             }
         } while (!isValidPlacement);
 
-        return map;
+        //return map;
     }
 
     /**
@@ -104,7 +131,7 @@ public class Treasure implements HiddenObject {
      * @param col
      * @author Sarah
      */
-    @Override
+    //@Override
     public void markDug(String[][] map, int row, int col) {
         for (int i = 0; i < coordinates.size(); i++) {
             int[] coords = coordinates.get(i);
@@ -131,5 +158,37 @@ public class Treasure implements HiddenObject {
         }
         isCompleted = true;
         return true;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public boolean isDug() {
+        return isDug;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void dig() {
+        this.isDug = true;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public boolean containsTreasure() {
+        return true;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public boolean containsTrap() {
+        return false;
     }
 }
