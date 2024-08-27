@@ -8,10 +8,6 @@ import java.util.Random;
  */
 public class Treasure implements MapCell {
     /**
-     * Random for placing the traps.
-     */
-    private Random random = new Random();
-    /**
      * int array used to determine the shape of the treasure.
      */
     private int[][] shape;
@@ -23,14 +19,6 @@ public class Treasure implements MapCell {
      * Y-coordinates
      */
     private int yCoord;
-    /**
-     * Boolean use to check if the entire treasure has been dug up.
-     */
-    private boolean isCompleted;
-    /**
-     * Boolean to check which parts of the treasure has been dug up.
-     */
-    private boolean[] dugPieces;
     /**
      * Boolean for state of cell to check if it has been dug
      */

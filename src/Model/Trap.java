@@ -7,10 +7,6 @@ import java.util.Random;
  */
 public class Trap implements MapCell {
     /**
-     * Random for placing traps randomly on the map. Implements the HiddenObject interface
-     */
-    private static Random random = new Random();
-    /**
      * boolean for status if cell has been dug
      */
     private boolean isDug = false;
