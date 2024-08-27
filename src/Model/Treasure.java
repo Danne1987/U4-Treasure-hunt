@@ -132,4 +132,13 @@ public class Treasure implements HiddenObject {
         isCompleted = true;
         return true;
     }
+
+    public int[][] getShape() {
+        return shape;
+    }
+
+    public void setCoordinates(List<int[]> coordinates) {
+        this.coordinates = coordinates;
+        this.dugPieces = new boolean[coordinates.size()];
+    }
 }
